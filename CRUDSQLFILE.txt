@@ -1,0 +1,86 @@
+SQLite version 3.39.4 2022-09-29 15:55:41
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+
+# CRETAE TABLE AND INSERT THE DATA
+
+sqlite> CREATE TABLE students (id INTEGER PRIMARY KEY, name TEXT, age INTEGER);
+sqlite> INSERT INTO students (name, age) VALUES ('Aanchal', 22);
+sqlite> SELECT * FROM students;
+1|Aanchal|22
+sqlite> INSERT INTO students (name,age) VALUES ('Vivek',22);
+sqlite> INSERT INTO students (name,age) VALUES ('Somesh',19);
+sqlite> INSERT INTO students (name,age) VALUES ('Dimple',25);
+sqlite> INSERT INTO students (name,age) VALUES ('Meet',17);
+
+#FETCHING DATA FROM THE TABLE (students)
+
+sqlite> SELECT * FROM students;
+1|Aanchal|22
+2|Vivek|22
+3|Somesh|19
+4|Dimple|25
+5|Meet|17
+
+#USING UPDATE QUERY UPDATE THE DATA 
+
+sqlite> UPDATE students SET name = 'Aarohi' WHERE age = 22;
+
+#HERE IS THE FETCHING DATA AFTER UPDATION 
+
+sqlite> SELECT * FROM students;
+1|Aarohi|22
+2|Aarohi|22
+3|Somesh|19
+4|Dimple|25
+5|Meet|17
+
+#HERE SOLVE  DUPLICATE DATA BY USING UPDATE QUERY 
+
+sqlite> UPDATE students SET name = 'Vivek' WHERE id = 2;
+sqlite> SELECT * FROM students;
+1|Aarohi|22
+2|Vivek|22
+3|Somesh|19
+4|Dimple|25
+5|Meet|17
+
+#DELETE THE DATA WITH CONDITION
+
+sqlite> DELETE * FROM students where name = 'Meet'; #SYNTAX ERROR 
+Parse error: near "*": syntax error
+  DELETE * FROM students where name = 'Meet';
+         ^--- error here
+sqlite> DELETE ALL FROM students where name = 'Meet';
+Parse error: near "ALL": syntax error
+  DELETE ALL FROM students where name = 'Meet';
+         ^--- error here
+		
+#DELETE DATA 		
+		 
+sqlite> DELETE  FROM students where name = 'Meet';
+
+#FETCHING DATA AFTER DELETION
+
+sqlite> SELECT * FROM students;
+1|Aarohi|22
+2|Vivek|22
+3|Somesh|19
+4|Dimple|25
+
+#CONDITION BASED FETCH DATA 
+
+sqlite> SELECT * FROM students WHERE age>19;
+
+1|Aarohi|22
+2|Vivek|22
+4|Dimple|25
+
+#NO ANY DATA FETCH BEACUSE ON THIS CONDTION I
+sqlite> SELECT * FROM students WHERE age<19;
+
+sqlite> INSERT INTO students (name,age) VALUES ('Parth',12);
+sqlite> SELECT * FROM students WHERE age<19;
+5|Parth|12
+sqlite>
