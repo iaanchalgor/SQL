@@ -1,0 +1,153 @@
+#CREATE TABLE NAME PRODUCTS AND CATEGORY
+
+sqlite> CREATE TABLE Products (
+   ...>     P_ID INTEGER PRIMARY KEY,
+   ...>     Product_name TEXT,
+   ...>     Category_ID INTEGER
+   ...> );
+   
+#Add DATA INTO PRODUCTS TABLE
+   
+sqlite>INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (1,'MOBILE' ,101);
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (2,'LAPTOP' ,102);
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (3,'TABLET' ,103);
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (4,'IPAD' ,104);
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (5,'DRESS' ,105);
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (6,'LEHENGA' ,106);
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (7,'KURTI' ,107);
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (8,'TOP' ,108);
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (9,'CROPTOP' ,109);
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (10,'JEANS' ,110);
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (11,'MANGO' ,111);
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (12,'APPLE' ,112);
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (13,'GRAPSE' ,113);
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (14,'CHIKU' ,114);
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (15,'BANANA' ,115);
+
+#FETCH DATA
+
+sqlite> SELECT * FROM Products;
+1|MOBILE|101
+2|LAPTOP|102
+3|TABLET|103
+4|IPAD|104
+5|DRESS|105
+6|LEHENGA|106
+7|KURTI|107
+8|TOP|108
+9|CROPTOP|109
+10|JEANS|110
+11|MANGO|111
+12|APPLE|112
+13|GRAPSE|113
+14|CHIKU|114
+15|BANANA|115
+
+
+#CATEGORY TABLE
+
+sqlite> CREATE TABLE Category (Category_ID INTEGER ,Category_name TEXT);
+
+
+#INSERT DATA IN CATEGORY TABLE
+
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (101,'ELECTRONICS');
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (102,'ELECTRONICS');
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (103,'ELECTRONICS');
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (104,'ELECTRONICS');
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (105,'CLOTHES');
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (106,'CLOTHES');
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (107,'CLOTHES');
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (108,'CLOTHES');
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (109,'CLOTHES');
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (110,'CLOTHES');
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (111,'FRUIT');
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (112,'FRUIT');
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (113,'FRUIT');
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (114,'FRUIT');
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (115,'FRUIT');
+
+#FETCH DATA FROM CATEGORY TABLE 
+
+
+sqlite> SELECT * FROM Category;
+101|ELECTRONICS
+102|ELECTRONICS
+103|ELECTRONICS
+104|ELECTRONICS
+105|CLOTHES
+106|CLOTHES
+107|CLOTHES
+108|CLOTHES
+109|CLOTHES
+110|CLOTHES
+111|FRUIT
+112|FRUIT
+113|FRUIT
+114|FRUIT
+115|FRUIT
+
+
+#JOIN QUERY 
+
+
+
+sqlite> SELECT Products.Product_name,Category.Category_name FROM Products JOIN Category ON Products.Category_ID = Category.Category_ID;
+
+
+This query retrieves the names of all products along with their matching category names, but only for those products that have a corresponding category.
+
+#OUTPUT OF THE QUERY
+
+MOBILE|ELECTRONICS
+LAPTOP|ELECTRONICS
+TABLET|ELECTRONICS
+IPAD|ELECTRONICS
+DRESS|CLOTHES
+LEHENGA|CLOTHES
+KURTI|CLOTHES
+TOP|CLOTHES
+CROPTOP|CLOTHES
+JEANS|CLOTHES
+MANGO|FRUIT
+APPLE|FRUIT
+GRAPSE|FRUIT
+CHIKU|FRUIT
+BANANA|FRUIT
+
+#ANOTHER DATA INSERT INTO CATEGORY TABLE
+
+sqlite> INSERT INTO Category (Category_ID,Category_name) VALUES (16,'FESTIVAL');
+
+#ANOTHER DATA INSERT INTO PRODUCTS TABLE
+
+sqlite> INSERT INTO Products (P_ID , Product_name, Category_ID )VALUES (16 ,'Holi',116);
+
+
+
+#This query finds the category names from the Category table that do not have any matching products in the Products table.
+
+
+SELECT
+   ...>     Products.Product_name,
+   ...>     Category.Category_name
+   ...> FROM
+   ...>     Category
+   ...> LEFT JOIN
+   ...>     Products
+   ...> ON
+   ...>     Products.Category_ID = Category.Category_ID
+   ...> WHERE
+   ...>     Products.Product_name IS NULL;
+   
+# OUTPUT OF THE QUERY 
+   
+|FESTIVAL
+
+ITS MATCHING THE ID AND GIVE THE OUTPUT IF THE ID IS NOT THAN IT'LL GIVE THE NULL OR THE DATA !
+
+
+
+
+
+
