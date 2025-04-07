@@ -1,0 +1,145 @@
+#CREATE  CUSTOMERCOUNTY TABLE AND USE WHERE CLAUSE 
+
+
+SQLite version 3.39.4 2022-09-29 15:55:41
+Enter ".help" for usage hints.
+sqlite> CREATE TABLE CustomerCountry( C_ID INTEGER PRIMARY KEY , C_Name TEXT , C_CountryNm TEXT, C_City Text);
+
+
+
+#INSERT DATA 
+
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (1 ,'VARSHA','INDIA','DELHI');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (2 ,'BHARTI','INDIA','CHANDIGADH');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (3 ,'PINKY','INDIA','VADODRA');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (4 ,'AANCHAL','INDIA','PUNE');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (5 ,'SAINARAJ','INDIA','RANCHI');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (6 ,'DIMPLE','INDIA','SURAT');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (7 ,'VIVEK','INDIA','JAIPUR');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (8 ,'SANJAY','INDIA','VRUNDAVAN');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (9 ,'NARESH','INDIA','MUMBAI');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (10 ,'JATIN','INDIA','BANARSH');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (11 ,'SOMESH','UAE','DUBAI');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (12 ,'HIMALAYA','CANADA','TORONTO');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (13 ,'SHUBHAM','UK','LONDON');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (14 ,'AKSHAY','NY','LOS ANGLES');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (15 ,'AANCHALJI','NY','LOS ANGLES');
+sqlite> INSERT INTO CustomerCountry(C_ID, C_Name  , C_CountryNm, C_City) VALUES (16 ,'SOMESHJI','NY','LOS ANGLES');
+
+
+#SHOW DATA WITH HEADERS AND PROPERMANNER
+
+sqlite> .headers ON
+sqlite> .mode column
+
+
+#SHOW THE DATA 
+
+sqlite> SELECT * FROM CustomerCountry;
+C_ID  C_Name     C_CountryNm  C_City
+----  ---------  -----------  ----------
+1     VARSHA     INDIA        DELHI
+2     BHARTI     INDIA        CHANDIGADH
+3     PINKY      INDIA        VADODRA
+4     AANCHAL    INDIA        PUNE
+5     SAINARAJ   INDIA        RANCHI
+6     DIMPLE     INDIA        SURAT
+7     VIVEK      INDIA        JAIPUR
+8     SANJAY     INDIA        VRUNDAVAN
+9     NARESH     INDIA        MUMBAI
+10    JATIN      INDIA        BANARSH
+11    SOMESH     UAE          DUBAI
+12    HIMALAYA   CANADA       TORONTO
+13    SHUBHAM    UK           LONDON
+14    AKSHAY     NY           LOS ANGLES
+15    AANCHALJI  NY           LOS ANGLES
+16    SOMESHJI   NY           LOS ANGLES
+17    SOMESH     NY           LOS ANGLES
+
+
+#USING DISTINCT KEYWORD ONLY FATCH THE COUNTRYNAME NOT REPEAT THE SAME COUNTRY NAME TWICE
+
+sqlite> SELECT DISTINCT C_CountryNm FROM CustomerCountry;
+INDIA
+UAE
+CANADA
+UK
+NY
+
+#DIFFERENCE  WITH OR WITHOUT DISTINCT KEYWORD
+
+sqlite> SELECT C_CountryNm FROM CustomerCountry;
+INDIA
+INDIA
+INDIA
+INDIA
+INDIA
+INDIA
+INDIA
+INDIA
+INDIA
+INDIA
+UAE
+CANADA
+UK
+NY
+NY
+NY
+
+
+#USING WHERE KEYWORD FETCH NAME DATA FROM SURAT
+
+sqlite> SELECT C_Name FROM CustomerCountry WHERE C_City = 'SURAT';
+DIMPLE
+
+
+#USING WHERE FETCH DATA BY ID>10
+
+sqlite> SELECT C_Name FROM CustomerCountry WHERE C_ID > 10;
+SOMESH
+HIMALAYA
+SHUBHAM
+AKSHAY
+AANCHALJI
+SOMESHJI
+SOMESH
+
+
+#USING BETWEEN KEYWORD FETCH DATA FROM 5 TO 12
+
+sqlite> SELECT * FROM CustomerCountry WHERE C_ID BETWEEN 5 AND 12;
+C_ID  C_Name    C_CountryNm  C_City
+----  --------  -----------  ---------
+5     SAINARAJ  INDIA        RANCHI
+6     DIMPLE    INDIA        SURAT
+7     VIVEK     INDIA        JAIPUR
+8     SANJAY    INDIA        VRUNDAVAN
+9     NARESH    INDIA        MUMBAI
+10    JATIN     INDIA        BANARSH
+11    SOMESH    UAE          DUBAI
+12    HIMALAYA  CANADA       TORONTO
+
+
+
+
+# USING LIKE KEYWORD FETCH DATA FROM  STARTING KEYWORD
+
+sqlite> SELECT * FROM CustomerCountry WHERE C_City LIKE 'L%';
+C_ID  C_Name     C_CountryNm  C_City
+----  ---------  -----------  ----------
+13    SHUBHAM    UK           LONDON
+14    AKSHAY     NY           LOS ANGLES
+15    AANCHALJI  NY           LOS ANGLES
+16    SOMESHJI   NY           LOS ANGLES
+17    SOMESH     NY           LOS ANGLES
+
+
+
+#USING IN KEYWORD FETCH PARTICULAR DATA 
+
+sqlite> SELECT * FROM CustomerCountry WHERE C_City IN ('LONDON' , 'VRUNDAVAN');
+C_ID  C_Name   C_CountryNm  C_City
+----  -------  -----------  ---------
+8     SANJAY   INDIA        VRUNDAVAN
+13    SHUBHAM  UK           LONDON
+sqlite>
