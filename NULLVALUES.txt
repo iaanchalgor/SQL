@@ -1,0 +1,73 @@
+#NULL VALUES 
+
+sqlite> CREATE TABLE SALARY (E_ID INTEGER PRIMERY KEY,E_NAME TEXT,E_SALARY INTEGER,E_DEPARTMENT TEXT,E_BONUS INTEGER);
+
+sqlite> INSERT INTO SALARY VALUES (1, 'Amit', 50000, 'HR', 5000);
+sqlite> INSERT INTO SALARY VALUES (2, 'Neha', NULL, 'IT', 7000);
+sqlite> INSERT INTO SALARY VALUES (3, 'Raj', 60000, NULL, 8000);
+sqlite> INSERT INTO SALARY VALUES (4, 'Priya', 55000, 'Finance', NULL);
+sqlite> INSERT INTO SALARY VALUES (5, NULL, 48000, 'Marketing', 3000);
+sqlite> INSERT INTO SALARY VALUES (6, 'John', 45000, NULL, NULL);
+sqlite> INSERT INTO SALARY VALUES (7, 'Sara', NULL, NULL, NULL);
+sqlite> INSERT INTO SALARY VALUES (8, NULL, NULL, 'Operations', NULL);
+sqlite> INSERT INTO SALARY VALUES (9, 'David', 62000, 'IT', 10000);
+sqlite> INSERT INTO SALARY VALUES (10, 'Meena', 50000, 'HR', NULL);
+sqlite> INSERT INTO SALARY VALUES (11, 'Ali', NULL, 'Finance', 6000);
+sqlite> INSERT INTO SALARY VALUES (12, NULL, 47000, NULL, 4000);
+sqlite> INSERT INTO SALARY VALUES (13, 'Kavita', 53000, 'Marketing', NULL);
+sqlite> INSERT INTO SALARY VALUES (14, 'Rohan', NULL, 'IT', NULL);
+sqlite> INSERT INTO SALARY VALUES (15, 'Simran', 61000, NULL, 7000);
+
+sqlite> .headers ON
+sqlite> .mode column
+
+sqlite> SELECT * FROM SALARY;
+
+E_ID  E_NAME  E_SALARY  E_DEPARTMENT  E_BONUS
+----  ------  --------  ------------  -------
+1     Amit    50000     HR            5000
+2     Neha              IT            7000
+3     Raj     60000                   8000
+4     Priya   55000     Finance
+5             48000     Marketing     3000
+6     John    45000
+7     Sara
+8                       Operations
+9     David   62000     IT            10000
+10    Meena   50000     HR
+11    Ali               Finance       6000
+12            47000                   4000
+13    Kavita  53000     Marketing
+14    Rohan             IT
+15    Simran  61000                   7000
+
+
+
+#THIS QUERI SHOWING DATA WHICH HAS NULL VALUES IN E_BONUS
+
+sqlite> SELECT E_NAME , E_SALARY , E_DEPARTMENT , E_BONUS FROM SALARY WHERE E_BONUS IS NULL;
+
+E_NAME  E_SALARY  E_DEPARTMENT  E_BONUS
+------  --------  ------------  -------
+Priya   55000     Finance
+John    45000
+Sara
+                  Operations
+Meena   50000     HR
+Kavita  53000     Marketing
+Rohan             IT
+
+#THIS QUERI SHOWING DATA WHICH HAS NOT NULL VALUES IN E_BONUS
+
+sqlite> SELECT E_NAME , E_SALARY , E_DEPARTMENT , E_BONUS FROM SALARY WHERE E_BONUS IS NOT NULL;
+E_NAME  E_SALARY  E_DEPARTMENT  E_BONUS
+------  --------  ------------  -------
+Amit    50000     HR            5000
+Neha              IT            7000
+Raj     60000                   8000
+        48000     Marketing     3000
+David   62000     IT            10000
+Ali               Finance       6000
+        47000                   4000
+Simran  61000                   7000
+sqlite>
