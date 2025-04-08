@@ -1,0 +1,151 @@
+#ORDERBY
+
+sqlite> SELECT * FROM CustomerCountry ORDER BY C_ID DESC;
+
+
+C_ID  C_Name     C_CountryNm  C_City
+----  ---------  -----------  ----------
+17    SOMESH     NY           LOS ANGLES
+16    SOMESHJI   NY           LOS ANGLES
+15    AANCHALJI  NY           LOS ANGLES
+14    AKSHAY     NY           LOS ANGLES
+13    SHUBHAM    UK           LONDON
+12    HIMALAYA   CANADA       TORONTO
+11    SOMESH     UAE          DUBAI
+10    JATIN      INDIA        BANARSH
+9     NARESH     INDIA        MUMBAI
+8     SANJAY     INDIA        VRUNDAVAN
+7     VIVEK      INDIA        JAIPUR
+6     DIMPLE     INDIA        SURAT
+5     SAINARAJ   INDIA        RANCHI
+4     AANCHAL    INDIA        PUNE
+3     PINKY      INDIA        VADODRA
+2     BHARTI     INDIA        CHANDIGADH
+1     VARSHA     INDIA        DELHI
+sqlite>
+
+
+sqlite> SELECT * FROM CustomerCountry ORDER BY C_NAME DESC;
+
+#IT GIVE ME A NAME  DATA IN DESCENDING ORDER 
+
+C_ID  C_Name     C_CountryNm  C_City
+----  ---------  -----------  ----------
+7     VIVEK      INDIA        JAIPUR
+1     VARSHA     INDIA        DELHI
+16    SOMESHJI   NY           LOS ANGLES
+11    SOMESH     UAE          DUBAI
+17    SOMESH     NY           LOS ANGLES
+13    SHUBHAM    UK           LONDON
+8     SANJAY     INDIA        VRUNDAVAN
+5     SAINARAJ   INDIA        RANCHI
+3     PINKY      INDIA        VADODRA
+9     NARESH     INDIA        MUMBAI
+10    JATIN      INDIA        BANARSH
+12    HIMALAYA   CANADA       TORONTO
+6     DIMPLE     INDIA        SURAT
+2     BHARTI     INDIA        CHANDIGADH
+14    AKSHAY     NY           LOS ANGLES
+15    AANCHALJI  NY           LOS ANGLES
+4     AANCHAL    INDIA        PUNE
+
+
+sqlite> SELECT * FROM CustomerCountry ORDER BY C_NAME ASC;
+
+#IT GIVE ME A NAME  DATA IN ASCENDING ORDER 
+
+C_ID  C_Name     C_CountryNm  C_City
+----  ---------  -----------  ----------
+4     AANCHAL    INDIA        PUNE
+15    AANCHALJI  NY           LOS ANGLES
+14    AKSHAY     NY           LOS ANGLES
+2     BHARTI     INDIA        CHANDIGADH
+6     DIMPLE     INDIA        SURAT
+12    HIMALAYA   CANADA       TORONTO
+10    JATIN      INDIA        BANARSH
+9     NARESH     INDIA        MUMBAI
+3     PINKY      INDIA        VADODRA
+5     SAINARAJ   INDIA        RANCHI
+8     SANJAY     INDIA        VRUNDAVAN
+13    SHUBHAM    UK           LONDON
+11    SOMESH     UAE          DUBAI
+17    SOMESH     NY           LOS ANGLES
+16    SOMESHJI   NY           LOS ANGLES
+1     VARSHA     INDIA        DELHI
+7     VIVEK      INDIA        JAIPUR
+
+
+#USING AND KEYWORD
+
+sqlite> SELECT * FROM CustomerCountry WHERE C_City = 'LOS ANGLES' AND C_Name LIKE 'A%';
+
+C_ID  C_Name     C_CountryNm  C_City
+----  ---------  -----------  ----------
+14    AKSHAY     NY           LOS ANGLES
+15    AANCHALJI  NY           LOS ANGLES
+sqlite>
+
+
+sqlite> SELECT * FROM CustomerCountry WHERE C_City = 'LOS ANGLES' AND C_Name LIKE 'A%' OR C_Name LIKE 'S%';
+
+C_ID  C_Name     C_CountryNm  C_City
+----  ---------  -----------  ----------
+5     SAINARAJ   INDIA        RANCHI
+8     SANJAY     INDIA        VRUNDAVAN
+11    SOMESH     UAE          DUBAI
+13    SHUBHAM    UK           LONDON
+14    AKSHAY     NY           LOS ANGLES
+15    AANCHALJI  NY           LOS ANGLES
+16    SOMESHJI   NY           LOS ANGLES
+17    SOMESH     NY           LOS ANGLES
+sqlite>
+
+
+sqlite> SELECT * FROM CustomerCountry WHERE C_City = 'LOS ANGLES' AND (C_Name LIKE 'A%' OR C_Name LIKE 'S%');
+
+C_ID  C_Name     C_CountryNm  C_City
+----  ---------  -----------  ----------
+14    AKSHAY     NY           LOS ANGLES
+15    AANCHALJI  NY           LOS ANGLES
+16    SOMESHJI   NY           LOS ANGLES
+17    SOMESH     NY           LOS ANGLES
+sqlite>
+
+
+sqlite> SELECT * FROM CustomerCountry WHERE C_City = 'LOS ANGLES' OR (C_Name LIKE 'A%' OR C_Name LIKE 'S%');
+
+C_ID  C_Name     C_CountryNm  C_City
+----  ---------  -----------  ----------
+4     AANCHAL    INDIA        PUNE
+5     SAINARAJ   INDIA        RANCHI
+8     SANJAY     INDIA        VRUNDAVAN
+11    SOMESH     UAE          DUBAI
+13    SHUBHAM    UK           LONDON
+14    AKSHAY     NY           LOS ANGLES
+15    AANCHALJI  NY           LOS ANGLES
+16    SOMESHJI   NY           LOS ANGLES
+17    SOMESH     NY           LOS ANGLES
+sqlite>
+
+
+sqlite> SELECT * FROM CustomerCountry WHERE C_NAME = 'SAINARAJ' OR C_CountryNm = 'RANCHI';
+
+C_ID  C_Name    C_CountryNm  C_City
+----  --------  -----------  ------
+5     SAINARAJ  INDIA        RANCHI
+sqlite>
+
+
+
+sqlite> SELECT * FROM CustomerCountry where NOT C_CountryNm = "INDIA";
+
+C_ID  C_Name     C_CountryNm  C_City
+----  ---------  -----------  ----------
+11    SOMESH     UAE          DUBAI
+12    HIMALAYA   CANADA       TORONTO
+13    SHUBHAM    UK           LONDON
+14    AKSHAY     NY           LOS ANGLES
+15    AANCHALJI  NY           LOS ANGLES
+16    SOMESHJI   NY           LOS ANGLES
+17    SOMESH     NY           LOS ANGLES
+sqlite>
